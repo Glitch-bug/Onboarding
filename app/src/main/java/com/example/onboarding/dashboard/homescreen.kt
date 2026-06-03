@@ -13,7 +13,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.Spacer
 
 @Composable
 fun HomeScreen() {
@@ -21,13 +24,33 @@ fun HomeScreen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Box (modifier = Modifier.fillMaxWidth().padding(10.dp, 10.dp)){
-            Box(
-                modifier = Modifier.background(color = Color.Gray,)
-                    .fillMaxWidth()
-                    .height(200.dp)
-            )
+            Column(
+                horizontalAlignment = Alignment.Start,
+            ){
+                Box(
+                    modifier = Modifier.background(color = Color.Gray,)
+                        .fillMaxWidth()
+                        .height(200.dp)
+                )
+                repeat(10){
+                    Spacer(
+                        modifier = Modifier.size(20.dp)
+                    )
+                    Thumbnail()
+                }
+
+            }
+
         }
     }
+}
+
+
+@Composable
+fun Thumbnail() {
+    Box(
+        modifier = Modifier.background(color = Color.Gray).height(60.dp).width(60.dp)
+    )
 }
 
 @Preview(showBackground=true)
