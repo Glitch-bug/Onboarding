@@ -1,6 +1,8 @@
 package com.example.onboarding.dashboard
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,7 +25,7 @@ fun HomeScreen() {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Box (modifier = Modifier.fillMaxWidth().padding(10.dp, 10.dp)){
+        Box (modifier = Modifier.fillMaxWidth().padding(10.dp, 30.dp)){
             Column(
                 horizontalAlignment = Alignment.Start,
             ){
@@ -32,12 +34,7 @@ fun HomeScreen() {
                         .fillMaxWidth()
                         .height(200.dp)
                 )
-                repeat(10){
-                    Spacer(
-                        modifier = Modifier.size(20.dp)
-                    )
-                    Thumbnail()
-                }
+                Articles()
 
             }
 
@@ -46,11 +43,32 @@ fun HomeScreen() {
 }
 
 
+
 @Composable
 fun Thumbnail() {
     Box(
-        modifier = Modifier.background(color = Color.Gray).height(60.dp).width(60.dp)
+        modifier = Modifier.background(color = Color.LightGray).height(60.dp).width(60.dp)
     )
+}
+
+@Composable
+fun ListItem() {
+    Row(){
+        Thumbnail()
+        Column(
+            modifier = Modifier.padding(10.dp, 0.dp)
+        ){
+            Box(
+                modifier = Modifier.background(color= Color.Gray).height(10.dp).fillMaxWidth()
+            )
+            Box(
+                modifier = Modifier.height(10.dp)
+            )
+            Box(
+                modifier = Modifier.background(color = Color.LightGray).height(40.dp).fillMaxWidth()
+            )
+        }
+    }
 }
 
 @Preview(showBackground=true)
@@ -58,3 +76,18 @@ fun Thumbnail() {
 fun HomeScreenPreview () {
     HomeScreen();
 }
+
+
+@Composable
+fun Articles(){
+    LazyColumn(){
+        items(20){
+            Spacer(
+                modifier = Modifier.size(20.dp)
+            )
+            ListItem()
+
+            }
+    }
+}
+
